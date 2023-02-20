@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/modules/app_module.dart';
+import 'package:learning_app/routes/routes.dart';
 
 void main() {
   return runApp(ModularApp(module: AppModule(), child: AppWidget()));
@@ -8,38 +11,21 @@ void main() {
 //Root widget
 class AppWidget extends StatelessWidget {
   Widget build(BuildContext context) {
+    Modular.setInitialRoute(Routes.auth.getModule());
+
     //MaterialApp - це віджет який дає встроєну моливість навігації , також дає відчуття нативної
     //платформи
-    return MaterialApp.router(
-      title: 'My Smart App',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      routeInformationParser: Modular.routeInformationParser,
-      routerDelegate: Modular.routerDelegate,
-    );
-  }
-}
-
-//Root module
-class AppModule extends Module {
-  //Залежності (Dependecy)
-  @override
-  List<Bind> get binds => [];
-
-  //Навігаційні путі (Routes)
-  @override
-  List<ModularRoute> get routes => [
-        ChildRoute('/', child: (context, args) => HomePage()),
-      ];
-}
-
-//Screen 1
-class HomePage extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Home Page')),
-      body: Center(
-        child: Text('This is initial page'),
-      ),
+    return ScreenUtilInit(
+      designSize: const Size(375, 812),
+      minTextAdapt: true,
+      // splitScreenMode: true,
+      builder: (BuildContext context, Widget? child) {
+        return MaterialApp.router(
+          title: 'Learning App',
+          routeInformationParser: Modular.routeInformationParser,
+          routerDelegate: Modular.routerDelegate,
+        );
+      },
     );
   }
 }
