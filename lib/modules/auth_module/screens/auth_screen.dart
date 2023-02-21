@@ -13,7 +13,6 @@ class AuthScreen extends StatelessWidget {
     final theme = Modular.get<AppTheme>();
     final textStyles = theme.getTheme().extension<MyTextStyles>()!;
     final colors = theme.getTheme().extension<MyColors>()!;
-    log("100.h${100.h}");
 
     return Scaffold(
       appBar: AppBar(
