@@ -247,75 +247,148 @@ class MyTextStyles extends ThemeExtension<MyTextStyles> {
   // Optional
   @override
   String toString() => 'MyTextStyles()';
+  const MyTextStyles.defaultTextStyles({
+    this.displayLarge = const TextStyle(
+      fontSize: 40,
+      fontWeight: FontWeight.w500,
+      height: 1.2,
+      letterSpacing: -1.5,
+      fontFamily: 'Inter',
+    ),
+    this.displayMedium = const TextStyle(
+      fontSize: 32,
+      fontWeight: FontWeight.w500,
+      height: 0.8,
+      letterSpacing: -1.5,
+      fontFamily: 'Inter',
+    ),
+    this.headingLarge = const TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w500,
+      height: 0.66,
+      letterSpacing: -1.5,
+      fontFamily: 'Inter',
+    ),
+    this.headingMedium = const TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      height: 0.7,
+      letterSpacing: -1,
+      fontFamily: 'Inter',
+    ),
+    this.bodyLarge = const TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+      height: 0.64,
+      letterSpacing: -0.25,
+      fontFamily: 'Inter',
+    ),
+    this.bodyMedium = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      height: 0.66,
+      letterSpacing: -0.25,
+      fontFamily: 'Inter',
+    ),
+    this.bodySmall = const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      height: 0.7,
+      letterSpacing: 0,
+      fontFamily: 'Inter',
+    ),
+    this.labelMedium = const TextStyle(
+      fontSize: 10,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0,
+      fontFamily: 'Inter',
+    ),
+    this.labelSmall = const TextStyle(
+      fontSize: 8,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0,
+      fontFamily: 'Inter',
+    ),
+  });
 
-  static MyTextStyles getDefaultTextStyles() => MyTextStyles(
-        displayLarge: GoogleFonts.inter(
-          fontSize: 40,
-          fontWeight: FontWeight.w500,
-          height: 48,
-          letterSpacing: -1.5,
-        ),
-        displayMedium: GoogleFonts.inter(
-          fontSize: 32,
-          fontWeight: FontWeight.w500,
-          height: 40,
-          letterSpacing: -1.5,
-        ),
-        headingLarge: GoogleFonts.inter(
-          fontSize: 24,
-          fontWeight: FontWeight.w500,
-          height: 36,
-          letterSpacing: -1.5,
-        ),
-        headingMedium: GoogleFonts.inter(
-          fontSize: 20,
-          fontWeight: FontWeight.w500,
-          height: 28,
-          letterSpacing: -1,
-        ),
-        bodyLarge: GoogleFonts.inter(
-          fontSize: 18,
-          fontWeight: FontWeight.w400,
-          height: 28,
-          letterSpacing: -0.25,
-        ),
-        bodyMedium: GoogleFonts.inter(
-          fontSize: 16,
-          fontWeight: FontWeight.w400,
-          height: 24,
-          letterSpacing: -0.25,
-        ),
-        bodySmall: GoogleFonts.inter(
-          fontSize: 14,
-          fontWeight: FontWeight.w400,
-          height: 20,
-          letterSpacing: 0,
-        ),
-        labelMedium: GoogleFonts.inter(
-          fontSize: 10,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0,
-        ),
-        labelSmall: GoogleFonts.inter(
-          fontSize: 8,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0,
-        ),
-      );
+// 'Roboto'
+//  const MyTextStyles.getDefaultTextStyles => MyTextStyles(
+//         displayLarge: TextStyle(
+//           fontSize: 40,
+//           fontWeight: FontWeight.w500,
+//           height: 48,
+//           letterSpacing: -1.5,
+//           fontFamily: 'Inter',
+//         ),
+//         displayMedium: TextStyle(
+//           fontSize: 32,
+//           fontWeight: FontWeight.w500,
+//           height: 40,
+//           letterSpacing: -1.5,
+//           fontFamily: 'Inter',
+//         ),
+//         headingLarge: TextStyle(
+//           fontSize: 24,
+//           fontWeight: FontWeight.w500,
+//           height: 36,
+//           letterSpacing: -1.5,
+//           fontFamily: 'Inter',
+//         ),
+//         headingMedium: TextStyle(
+//           fontSize: 20,
+//           fontWeight: FontWeight.w500,
+//           height: 28,
+//           letterSpacing: -1,
+//           fontFamily: 'Inter',
+//         ),
+//         bodyLarge: TextStyle(
+//           fontSize: 18,
+//           fontWeight: FontWeight.w400,
+//           height: 28,
+//           letterSpacing: -0.25,
+//           fontFamily: 'Inter',
+//         ),
+//         bodyMedium: TextStyle(
+//           fontSize: 16,
+//           fontWeight: FontWeight.w400,
+//           height: 24,
+//           letterSpacing: -0.25,
+//           fontFamily: 'Inter',
+//         ),
+//         bodySmall: TextStyle(
+//           fontSize: 14,
+//           fontWeight: FontWeight.w400,
+//           height: 20,
+//           letterSpacing: 0,
+//           fontFamily: 'Inter',
+//         ),
+//         labelMedium: TextStyle(
+//           fontSize: 10,
+//           fontWeight: FontWeight.w400,
+//           letterSpacing: 0,
+//           fontFamily: 'Inter',
+//         ),
+//         labelSmall: TextStyle(
+//           fontSize: 8,
+//           fontWeight: FontWeight.w400,
+//           letterSpacing: 0,
+//           fontFamily: 'Inter',
+//         ),
+//       );
 }
 
 class AppTheme {
   final _darkTheme = ThemeData.dark().copyWith(
     extensions: <ThemeExtension<dynamic>>[
       const MyColors.dark(),
-      MyTextStyles.getDefaultTextStyles(),
+      const MyTextStyles.defaultTextStyles(),
     ],
   );
 
   final _lightTheme = ThemeData.light().copyWith(
     extensions: [
       const MyColors.light(),
-      MyTextStyles.getDefaultTextStyles(),
+      const MyTextStyles.defaultTextStyles(),
     ],
   );
 

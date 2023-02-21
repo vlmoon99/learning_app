@@ -9,9 +9,7 @@ class AppModule extends Module {
   //Залежності (Dependecy)
   @override
   List<Bind> get binds => [
-        Bind.singleton(
-          (i) => AppTheme(),
-        ),
+        Bind.singleton((i) => AppTheme()),
       ];
 
   //Навігаційні путі (Routes)

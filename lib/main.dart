@@ -1,10 +1,17 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/modules/app_module.dart';
 import 'package:learning_app/routes/routes.dart';
 
 void main() {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+
   return runApp(ModularApp(module: AppModule(), child: AppWidget()));
 }
 
