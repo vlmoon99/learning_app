@@ -1,0 +1,28 @@
+{
+    "login.title": "Log In",
+    "login.buttonText" : "Log In",
+
+    "login.forgotPassword" : "Forgot your password?",
+
+
+
+    "signup.title" : "Sign up",
+
+    "signup.nameTextInputHint" : "Name",
+    "signup.emailTextInputHint" : "Email",
+    "signup.passwordTextInputHint" : "Password",
+
+    "signup.nameTextInputErrorText" : "Name must be longer that 1 symbols",
+    "signup.emailTextInputErrorText" : "Incorrect Email address",
+    "signup.passwordTextInputErrorText" : "Password",
+
+    "signup.buttonText" : "Sign up",
+
+    "signup.forgotPassword" : "Forgot your password?",
+
+    "signup.loginSecondaryText" : "Are you already a client? Press here to Log In"
+
+
+  
+
+}

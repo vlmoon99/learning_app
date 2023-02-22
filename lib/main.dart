@@ -1,24 +1,76 @@
+import 'dart:async';
+import 'dart:developer';
+
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:learning_app/assets/localizations.dart';
 import 'package:learning_app/modules/app_module.dart';
 import 'package:learning_app/routes/routes.dart';
 
-void main() {
-  LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('google_fonts/OFL.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
+// void main() async {
+//   LicenseRegistry.addLicense(() async* {});
+//   WidgetsFlutterBinding.ensureInitialized();
 
-  return runApp(ModularApp(module: AppModule(), child: AppWidget()));
+//   await EasyLocalization.ensureInitialized();
+
+//   return runApp(ModularApp(module: AppModule(), child: AppWidget()));
+// }
+
+void main() {
+  runZonedGuarded(() async {
+    LicenseRegistry.addLicense(() async* {
+      final license =
+          await rootBundle.loadString('assets/google_fonts/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['assets/google_fonts'], license);
+    });
+
+    WidgetsFlutterBinding.ensureInitialized();
+
+    await EasyLocalization.ensureInitialized();
+    //Catch Errors caught by Flutter
+    FlutterError.onError = (details) {
+      FlutterError.presentError(details);
+      log("Catch Error from FlutterError $details");
+
+      //TODO add catcher
+    };
+
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]).then(
+      (value) => runApp(
+        EasyLocalization(
+          supportedLocales: const [
+            Locale('en'),
+          ],
+          path: LocalizationsStrings.localizationPath,
+          fallbackLocale: const Locale('en'),
+          child: ModularApp(
+            module: AppModule(),
+            child: const AppWidget(),
+          ),
+        ),
+      ),
+    );
+  }, (error, stack) {
+    log("Catch Error from Zone $error");
+    //Catch Errors not caught by Flutter
+    //TODO add catcher
+  });
 }
 
 //Root widget
 class AppWidget extends StatelessWidget {
+  const AppWidget({super.key});
+
+  @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(Routes.auth.getModule());
+    Modular.setInitialRoute(Routes.auth.getRoute(Routes.auth.signup));
 
     //MaterialApp - це віджет який дає встроєну моливість навігації , також дає відчуття нативної
     //платформи
@@ -31,6 +83,9 @@ class AppWidget extends StatelessWidget {
           title: 'Learning App',
           routeInformationParser: Modular.routeInformationParser,
           routerDelegate: Modular.routerDelegate,
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
         );
       },
     );
