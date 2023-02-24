@@ -10,6 +10,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:learning_app/assets/localizations.dart';
 import 'package:learning_app/modules/app_module.dart';
 import 'package:learning_app/routes/routes.dart';
+import 'package:learning_app/utils/utils.dart';
 
 // void main() async {
 //   LicenseRegistry.addLicense(() async* {});
@@ -38,6 +39,7 @@ void main() {
 
       //TODO add catcher
     };
+    final isAuthorized = await checkIfUserAuthorized();
 
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
@@ -52,7 +54,7 @@ void main() {
           fallbackLocale: const Locale('en'),
           child: ModularApp(
             module: AppModule(),
-            child: const AppWidget(),
+            child: AppWidget(isAuthorized: isAuthorized),
           ),
         ),
       ),
@@ -66,11 +68,13 @@ void main() {
 
 //Root widget
 class AppWidget extends StatelessWidget {
-  const AppWidget({super.key});
-
+  const AppWidget({required this.isAuthorized, super.key});
+  final bool isAuthorized;
   @override
   Widget build(BuildContext context) {
-    Modular.setInitialRoute(Routes.auth.getRoute(Routes.auth.signup));
+    Modular.setInitialRoute(isAuthorized
+        ? Routes.home.getModule()
+        : Routes.auth.getRoute(Routes.auth.signup));
 
     //MaterialApp - це віджет який дає встроєну моливість навігації , також дає відчуття нативної
     //платформи

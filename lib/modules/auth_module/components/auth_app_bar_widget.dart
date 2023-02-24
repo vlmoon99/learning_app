@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:learning_app/theme/app_theme.dart';
 
-class AuthAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const AuthAppBar({
+class AppAppBar extends StatelessWidget implements PreferredSizeWidget {
+  const AppAppBar({
     super.key,
     this.leading,
     required this.titleText,
