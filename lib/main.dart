@@ -30,7 +30,6 @@ void main() {
     });
 
     WidgetsFlutterBinding.ensureInitialized();
-
     await EasyLocalization.ensureInitialized();
     //Catch Errors caught by Flutter
     FlutterError.onError = (details) {

@@ -36,7 +36,7 @@ class NetworkClient {
     AppExceptions? appExceptions;
     try {
       Response response = await _dio.get(url);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
       appExceptions = _handleError(e);
     }
@@ -52,7 +52,7 @@ class NetworkClient {
         url,
         data: data,
       );
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
       appExceptions = _handleError(e);
     }
@@ -65,7 +65,7 @@ class NetworkClient {
 
     try {
       Response response = await _dio.put(url, data: data);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
       appExceptions = _handleError(e);
     }
@@ -78,7 +78,7 @@ class NetworkClient {
 
     try {
       Response response = await _dio.delete(url, data: data);
-      return ApiResponse.sucsess(response.data, response.statusCode!, true);
+      return ApiResponse.success(response.data, response.statusCode!, true);
     } on DioError catch (e) {
       appExceptions = _handleError(e);
     }
@@ -89,7 +89,7 @@ class NetworkClient {
 }
 
 class ApiResponse {
-  ApiResponse.sucsess(this.data, this.statusCode, this.isSucsess);
+  ApiResponse.success(this.data, this.statusCode, this.isSucsess);
   ApiResponse.error(this.data, this.statusCode, this.isSucsess);
 
   dynamic data;
